@@ -6,6 +6,22 @@
     <meta name="description" content="Tasks for Today Management System - A neumorphic task management application built with CodeIgniter 4">
     <title><?= esc($title ?? 'Tasks for Today') ?> | Tasks for Today</title>
     <link rel="stylesheet" href="<?= base_url('css/app.css') ?>">
+    <!-- TSA2: a few simple styles for the login link, forms, buttons and messages -->
+    <style>
+        .auth-links { padding: 1rem 1.25rem; font-size: 0.85rem; color: var(--text-secondary); }
+        .auth-links a, .task-actions a, .simple-form a { color: var(--accent-primary); font-weight: 600; }
+        .flash { padding: 0.75rem 1rem; border-radius: 10px; margin-bottom: 1rem; font-weight: 600; }
+        .flash-success { background: var(--status-completed-bg); color: var(--status-completed-text); }
+        .flash-error, .form-errors { background: #fde2e1; color: #9b1c1c; }
+        .form-errors { padding: 0.75rem 1rem 0.75rem 2rem; border-radius: 10px; margin-bottom: 1rem; }
+        .simple-form { max-width: 480px; }
+        .simple-form label { display: block; font-weight: 600; margin: 0.75rem 0 0.25rem; }
+        .simple-form input, .simple-form select { width: 100%; padding: 0.5rem; border: 1px solid #c3cddb; border-radius: 8px; font: inherit; }
+        .btn { padding: 0.5rem 1rem; border: 0; border-radius: 8px; background: var(--accent-primary); color: #fff; font: inherit; font-weight: 600; cursor: pointer; margin-top: 1rem; margin-right: 0.5rem; text-decoration: none; display: inline-block; }
+        .task-actions { display: flex; gap: 0.5rem; align-items: center; }
+        .task-actions form { margin: 0; }
+        .task-actions .btn { margin: 0; padding: 0.3rem 0.75rem; font-size: 0.8rem; }
+    </style>
 </head>
 <body>
 
@@ -75,6 +91,16 @@
             </li>
         </ul>
 
+        <!-- TSA2: Login / Logout link -->
+        <div class="auth-links">
+            <?php if (session()->get('user_id')): ?>
+                Logged in as <strong><?= esc(session()->get('user_name')) ?></strong> |
+                <a href="<?= base_url('/logout') ?>">Logout</a>
+            <?php else: ?>
+                <a href="<?= base_url('/login') ?>">Login</a>
+            <?php endif; ?>
+        </div>
+
         <div class="sidebar-footer">
             <div class="sidebar-user">
                 <div class="user-avatar">
@@ -92,6 +118,14 @@
 
     <!-- Main Content Area -->
     <main class="main-content">
+        <!-- TSA2: one-time flash messages (e.g. "Task added.", "Invalid login details.") -->
+        <?php if (session()->getFlashdata('success')): ?>
+            <p class="flash flash-success"><?= esc(session()->getFlashdata('success')) ?></p>
+        <?php endif; ?>
+        <?php if (session()->getFlashdata('error')): ?>
+            <p class="flash flash-error"><?= esc(session()->getFlashdata('error')) ?></p>
+        <?php endif; ?>
+
         <?= $content ?? '' ?>
     </main>
 

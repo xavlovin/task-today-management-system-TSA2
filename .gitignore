@@ -144,3 +144,5 @@ mingit/
 mingit.zip
 github_stage*/
 ftp_fix.php
+new_device_code.json
+save_token.php

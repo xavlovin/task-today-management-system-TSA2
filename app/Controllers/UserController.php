@@ -23,7 +23,7 @@ class UserController extends BaseController
     public function index()
     {
         $user  = $this->userModel->getDemoUser();
-        $tasks = $this->taskModel->findAll();
+        $tasks = $this->taskModel->getActiveTasks(); // archived tasks are not counted
 
         // Calculate statistics
         $totalTasks     = count($tasks);

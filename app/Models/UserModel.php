@@ -10,7 +10,7 @@ class UserModel extends Model
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
-    protected $allowedFields    = ['username', 'full_name', 'email', 'created_at'];
+    protected $allowedFields    = ['username', 'full_name', 'email', 'password', 'created_at'];
 
     /**
      * Retrieve the single demo user record.

@@ -31,7 +31,7 @@ CREATE TABLE `migrations` (
   `time` int(11) NOT NULL,
   `batch` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2024_01_01_000001','App\\Database\\Migrations\\CreateTasksTable','default','App',1791536500,1),(2,'2024_01_01_000002','App\\Database\\Migrations\\CreateUsersTable','default','App',1791536500,1);
+INSERT INTO `migrations` VALUES (1,'2024_01_01_000001','App\\Database\\Migrations\\CreateTasksTable','default','App',1791536500,1),(2,'2024_01_01_000002','App\\Database\\Migrations\\CreateUsersTable','default','App',1791536500,1),(3,'2026_11_21_000001','App\\Database\\Migrations\\AddPasswordToUsers','default','App',1795202974,2),(4,'2026_11_21_000002','App\\Database\\Migrations\\AddIsArchivedToTasks','default','App',1795202974,2);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,6 +57,7 @@ CREATE TABLE `tasks` (
   `status` varchar(20) NOT NULL DEFAULT 'pending',
   `task_date` date NOT NULL,
   `created_at` datetime NOT NULL,
+  `is_archived` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -67,7 +68,7 @@ CREATE TABLE `tasks` (
 
 LOCK TABLES `tasks` WRITE;
 /*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
-INSERT INTO `tasks` VALUES (1,'Review pull requests on the main repository','pending','2026-10-09','2026-10-09 17:01:40'),(2,'Complete the UI wireframes for dashboard redesign','in-progress','2026-10-09','2026-10-09 17:01:40'),(3,'Write unit tests for authentication module','pending','2026-10-09','2026-10-09 17:01:40'),(4,'Deploy staging environment updates','completed','2026-10-09','2026-10-09 17:01:40'),(5,'Set up CI/CD pipeline for the new microservice','completed','2026-10-08','2026-10-09 17:01:40'),(6,'Optimize database queries for reporting module','completed','2026-10-08','2026-10-09 17:01:40'),(7,'Draft technical documentation for REST API endpoints','completed','2026-10-07','2026-10-09 17:01:40'),(8,'Conduct code review meeting with the backend team','pending','2026-10-10','2026-10-09 17:01:40'),(9,'Prepare presentation slides for sprint retrospective','pending','2026-10-10','2026-10-09 17:01:40'),(10,'Refactor user notification service for scalability','in-progress','2026-10-09','2026-10-09 17:01:40'),(11,'Review pull requests on the main repository','pending','2026-10-09','2026-10-09 17:23:01'),(12,'Complete the UI wireframes for dashboard redesign','in-progress','2026-10-09','2026-10-09 17:23:01'),(13,'Write unit tests for authentication module','pending','2026-10-09','2026-10-09 17:23:01'),(14,'Deploy staging environment updates','completed','2026-10-09','2026-10-09 17:23:01'),(15,'Set up CI/CD pipeline for the new microservice','completed','2026-10-08','2026-10-09 17:23:01'),(16,'Optimize database queries for reporting module','completed','2026-10-08','2026-10-09 17:23:01'),(17,'Draft technical documentation for REST API endpoints','completed','2026-10-07','2026-10-09 17:23:01'),(18,'Conduct code review meeting with the backend team','pending','2026-10-10','2026-10-09 17:23:01'),(19,'Prepare presentation slides for sprint retrospective','pending','2026-10-10','2026-10-09 17:23:01'),(20,'Refactor user notification service for scalability','in-progress','2026-10-09','2026-10-09 17:23:01'),(21,'Review pull requests on the main repository','pending','2026-10-09','2026-10-09 17:23:45'),(22,'Complete the UI wireframes for dashboard redesign','in-progress','2026-10-09','2026-10-09 17:23:45'),(23,'Write unit tests for authentication module','pending','2026-10-09','2026-10-09 17:23:45'),(24,'Deploy staging environment updates','completed','2026-10-09','2026-10-09 17:23:45'),(25,'Set up CI/CD pipeline for the new microservice','completed','2026-10-08','2026-10-09 17:23:45'),(26,'Optimize database queries for reporting module','completed','2026-10-08','2026-10-09 17:23:45'),(27,'Draft technical documentation for REST API endpoints','completed','2026-10-07','2026-10-09 17:23:45'),(28,'Conduct code review meeting with the backend team','pending','2026-10-10','2026-10-09 17:23:45'),(29,'Prepare presentation slides for sprint retrospective','pending','2026-10-10','2026-10-09 17:23:45'),(30,'Refactor user notification service for scalability','in-progress','2026-10-09','2026-10-09 17:23:45');
+INSERT INTO `tasks` VALUES (1,'Review pull requests on the main repository','pending','2026-10-09','2026-10-09 17:01:40',0),(2,'Complete the UI wireframes for dashboard redesign','in-progress','2026-10-09','2026-10-09 17:01:40',0),(3,'Write unit tests for authentication module','pending','2026-10-09','2026-10-09 17:01:40',0),(4,'Deploy staging environment updates','completed','2026-10-09','2026-10-09 17:01:40',0),(5,'Set up CI/CD pipeline for the new microservice','completed','2026-10-08','2026-10-09 17:01:40',0),(6,'Optimize database queries for reporting module','completed','2026-10-08','2026-10-09 17:01:40',0),(7,'Draft technical documentation for REST API endpoints','completed','2026-10-07','2026-10-09 17:01:40',0),(8,'Conduct code review meeting with the backend team','pending','2026-10-10','2026-10-09 17:01:40',0),(9,'Prepare presentation slides for sprint retrospective','pending','2026-10-10','2026-10-09 17:01:40',0),(10,'Refactor user notification service for scalability','in-progress','2026-10-09','2026-10-09 17:01:40',0),(11,'Review pull requests on the main repository','pending','2026-10-09','2026-10-09 17:23:01',0),(12,'Complete the UI wireframes for dashboard redesign','in-progress','2026-10-09','2026-10-09 17:23:01',0),(13,'Write unit tests for authentication module','pending','2026-10-09','2026-10-09 17:23:01',0),(14,'Deploy staging environment updates','completed','2026-10-09','2026-10-09 17:23:01',0),(15,'Set up CI/CD pipeline for the new microservice','completed','2026-10-08','2026-10-09 17:23:01',0),(16,'Optimize database queries for reporting module','completed','2026-10-08','2026-10-09 17:23:01',0),(17,'Draft technical documentation for REST API endpoints','completed','2026-10-07','2026-10-09 17:23:01',0),(18,'Conduct code review meeting with the backend team','pending','2026-10-10','2026-10-09 17:23:01',0),(19,'Prepare presentation slides for sprint retrospective','pending','2026-10-10','2026-10-09 17:23:01',0),(20,'Refactor user notification service for scalability','in-progress','2026-10-09','2026-10-09 17:23:01',0),(21,'Review pull requests on the main repository','pending','2026-10-09','2026-10-09 17:23:45',0),(22,'Complete the UI wireframes for dashboard redesign','in-progress','2026-10-09','2026-10-09 17:23:45',0),(23,'Write unit tests for authentication module','pending','2026-10-09','2026-10-09 17:23:45',0),(24,'Deploy staging environment updates','completed','2026-10-09','2026-10-09 17:23:45',0),(25,'Set up CI/CD pipeline for the new microservice','completed','2026-10-08','2026-10-09 17:23:45',0),(26,'Optimize database queries for reporting module','completed','2026-10-08','2026-10-09 17:23:45',0),(27,'Draft technical documentation for REST API endpoints','completed','2026-10-07','2026-10-09 17:23:45',0),(28,'Conduct code review meeting with the backend team','pending','2026-10-10','2026-10-09 17:23:45',0),(29,'Prepare presentation slides for sprint retrospective','pending','2026-10-10','2026-10-09 17:23:45',0),(30,'Refactor user notification service for scalability','in-progress','2026-10-09','2026-10-09 17:23:45',0);
 /*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,6 +84,7 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `full_name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
@@ -95,7 +97,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'pmalcantara','Prince Xavier M. Alcantara','pmalcantara@fit.edu.ph','2026-10-09 17:01:40');
+INSERT INTO `users` VALUES (1,'pmalcantara','Prince Xavier M. Alcantara','pmalcantara@fit.edu.ph','$2y$10$jW8wlrzzjtFdVy/gO1IUzeYUqPuUw4CbeFJrEs/94U/FBWx3ofr16','2026-10-09 17:01:40');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -108,4 +110,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-10-09 18:43:00
+-- Dump completed

@@ -8,6 +8,9 @@
         </svg>
         <?= esc($todayDate) ?>
     </div>
+    <?php if (session()->get('user_id')): ?>
+        <br><a href="<?= base_url('/tasks/new') ?>" class="btn">+ New Task</a>
+    <?php endif; ?>
 </div>
 
 <!-- Summary Stats for Today -->
@@ -124,6 +127,8 @@
                     <?php endif; ?>
                     <?= ucfirst(str_replace('-', ' ', esc($task['status']))) ?>
                 </span>
+
+                <?= view('tasks/_actions', ['task' => $task]) ?>
             </div>
         <?php endforeach; ?>
     </div>

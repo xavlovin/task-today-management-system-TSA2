@@ -2,6 +2,9 @@
 <div class="page-header animate-fade-in">
     <h2>All Tasks</h2>
     <p class="subtitle">Complete chronological overview of every task across all dates.</p>
+    <?php if (session()->get('user_id')): ?>
+        <a href="<?= base_url('/tasks/new') ?>" class="btn">+ New Task</a>
+    <?php endif; ?>
 </div>
 
 <!-- Summary Stats -->
@@ -139,6 +142,8 @@
                         <?php endif; ?>
                         <?= ucfirst(str_replace('-', ' ', esc($task['status']))) ?>
                     </span>
+
+                    <?= view('tasks/_actions', ['task' => $task]) ?>
                 </div>
             <?php endforeach; ?>
         </div>
